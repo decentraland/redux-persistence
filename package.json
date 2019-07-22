@@ -1,0 +1,60 @@
+{
+  "name": "redux-persistence",
+  "version": "0.0.0-development",
+  "description": "Persistence layer for redux with flexible backends.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decentraland/redux-persistence.git"
+  },
+  "keywords": [
+    "decentraland",
+    "redux",
+    "redux-storage",
+    "persistence"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "ava --serial",
+    "semantic-release": "semantic-release"
+  },
+  "author": "Decentraland",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/decentraland/redux-persistence/issues"
+  },
+  "homepage": "https://github.com/decentraland/redux-persistence#readme",
+  "dependencies": {
+    "lodash": "^4.17.14",
+    "redux-actions": "^2.6.5",
+    "redux-storage-merger-simple": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.8",
+    "@types/redux-actions": "^2.6.1",
+    "@types/sinon": "^7.0.13",
+    "ava": "^2.2.0",
+    "fp-future": "^1.0.1",
+    "prettier": "^1.18.2",
+    "semantic-release": "^15.13.18",
+    "sinon": "^7.3.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 140
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
