@@ -28,8 +28,8 @@ jobs:
           command: npm run test
       - save_cache:
           paths:
-            - lib
-          key: lib-{{ .Branch }}-{{ .Revision }}
+            - dist
+          key: dist-{{ .Branch }}-{{ .Revision }}
 
   release:
     docker:
@@ -41,7 +41,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - lib-{{ .Branch }}-{{ .Revision }}
+            - dist-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           keys:
             - dependencies-{{ checksum "package-lock.json" }}
