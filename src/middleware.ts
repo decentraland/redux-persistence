@@ -1,6 +1,6 @@
 import isFunction from 'lodash/fp/isFunction'
 import isObject from 'lodash/fp/isObject'
-import { LOAD, SAVE, save, load } from './actions'
+import { LOAD, SAVE, save } from './actions'
 import { ActionMeta, BaseAction } from 'redux-actions'
 import { StorageEngine, MiddlewareOptions, ReduxStore } from './types'
 import { receivedFunctionalAction, receivedNonObjectAction, missingActionType, defaultErrorHandler } from './warnings'
