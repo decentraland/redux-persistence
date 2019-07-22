@@ -1,7 +1,7 @@
 import { load as actionLoad } from './actions'
-import { StorageEngine } from './types'
+import { StorageEngine, Loader } from './types'
 
-export function createLoader(engine: StorageEngine) {
+export function createLoader<T>(engine: StorageEngine): Loader<T> {
   return async store => {
     const dispatchLoad = state => store.dispatch(actionLoad(state))
     const newState = await engine.load()

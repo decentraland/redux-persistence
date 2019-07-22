@@ -33,3 +33,11 @@ export type ReduxStore<T> = {
   dispatch: (action: BaseAction) => void
   getState: () => T
 }
+
+export type Loader<T> = {
+  (store: ReduxStore<T>): PromiseLike<any>
+}
+
+export type StateMerger = {
+  (oldState: any, newState: any): any
+}
