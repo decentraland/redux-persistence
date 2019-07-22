@@ -1,4 +1,5 @@
-# redux-persistence
+<h1 align="center" style="border-bottom: none;">🗄 redux-persistence</h1>
+<h3 align="center">Persistence layer for redux with flexible backends</h3>
 
 ## Features
 
