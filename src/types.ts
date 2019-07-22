@@ -1,8 +1,8 @@
 import { BaseAction } from 'redux-actions'
 
 export type StorageEngine = {
-  load(): Promise<any>
-  save(state: any): Promise<any>
+  load(): PromiseLike<any>
+  save(state: any): PromiseLike<any>
 }
 
 export type MiddlewareWhitelist = string[] | ((action: BaseAction) => boolean)

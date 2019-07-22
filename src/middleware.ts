@@ -59,14 +59,13 @@ export function createMiddleware<T extends any>(engine: StorageEngine, options: 
 
         const dispatchSave = () => dispatch(saveAction)
 
-        engine
-          .save(saveState)
-          .then(() => {
+        engine.save(saveState).then(
+          () => {
             if (opts.disableDispatchSaveAction === false) {
               return dispatchSave()
             }
-          })
-          .catch(e => {
+          },
+          e => {
             if (options.onError) {
               options.onError(e)
             } else {
@@ -75,7 +74,8 @@ export function createMiddleware<T extends any>(engine: StorageEngine, options: 
               }
               console.error(e)
             }
-          })
+          }
+        )
       }
 
       return result

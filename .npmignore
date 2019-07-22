@@ -1,0 +1,10 @@
+node_modules/
+tmp/
+*.log
+.env
+
+test/
+src/
+.circleci
+/tsconfig.json
+/tslint.json
