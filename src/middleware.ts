@@ -31,7 +31,7 @@ function isValidAction(action) {
   return false
 }
 
-export function createMiddleware<T extends any>(engine: StorageEngine, options: MiddlewareOptions = {}) {
+export function createMiddleware<T extends any>(engine: StorageEngine, options: MiddlewareOptions<T> = {}) {
   const opts = Object.assign({ disableDispatchSaveAction: false }, options)
 
   return ({ dispatch, getState }: ReduxStore<T>) => {
@@ -47,7 +47,7 @@ export function createMiddleware<T extends any>(engine: StorageEngine, options: 
 
       if (!isBlacklisted) {
         const transform = options.transform || defaultTransformer
-        const saveState = transform<T>(getState())
+        const saveState = transform(getState())
         const saveAction = save(saveState) as ActionMeta<any, any>
 
         if (process.env.NODE_ENV !== 'production') {
