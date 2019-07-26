@@ -7,7 +7,7 @@ export type StorageEngine = {
 
 export type MiddlewareWhitelist = string[] | ((action: BaseAction) => boolean)
 
-export type MiddlewareOptions = {
+export type MiddlewareOptions<T> = {
   /**
    * Return `true` for any action that should be accepted by the middleware.
    */
@@ -16,7 +16,7 @@ export type MiddlewareOptions = {
   /**
    * Transform and return a new state before saving to the psrovided storage engine.
    */
-  transform?: <T extends any>(state: T) => T
+  transform?: (state: T) => T
 
   /**
    * Don't dispatch a `REDUX_PERSISTENCE_SAVE` action after saving to the provided storage engine, `false` by default.
