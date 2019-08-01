@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import future from 'fp-future'
-import { BaseAction } from 'redux-actions'
+import { Action } from 'typesafe-actions'
 import { createMiddleware, SAVE } from '../src/index'
 import { receivedFunctionalAction, receivedNonObjectAction, missingActionType, defaultErrorHandler } from '../src/warnings'
 
@@ -29,7 +29,7 @@ test('middleware - should ignore filtered actions', async t => {
   const engine = { save: sinon.stub().resolves(), load: sinon.stub() }
   const next = sinon.spy()
   const action = { type: 'IGNORE_ME' }
-  const handleFilter = (a: BaseAction) => a.type !== 'IGNORE_ME'
+  const handleFilter = (a: Action) => a.type !== 'IGNORE_ME'
   createMiddleware(engine, { filterAction: handleFilter })(store)(next)(action)
   t.is(engine.save.called, false)
 })

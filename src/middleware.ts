@@ -1,7 +1,7 @@
 import isFunction from 'lodash/fp/isFunction'
 import isObject from 'lodash/fp/isObject'
 import { LOAD, SAVE, save } from './actions'
-import { ActionMeta, BaseAction } from 'redux-actions'
+import { Action, PayloadMetaAction } from 'typesafe-actions'
 import { StorageEngine, MiddlewareOptions, ReduxStore } from './types'
 import { receivedFunctionalAction, receivedNonObjectAction, missingActionType, defaultErrorHandler } from './warnings'
 
@@ -35,7 +35,7 @@ export function createMiddleware<T extends any>(engine: StorageEngine, options: 
   const opts = Object.assign({ disableDispatchSaveAction: false }, options)
 
   return ({ dispatch, getState }: ReduxStore<T>) => {
-    return next => (action: BaseAction) => {
+    return next => (action: Action) => {
       const result = next(action)
 
       if (!isValidAction(action)) {
@@ -48,7 +48,7 @@ export function createMiddleware<T extends any>(engine: StorageEngine, options: 
       if (!isBlacklisted) {
         const transform = options.transform || defaultTransformer
         const saveState = transform(getState())
-        const saveAction = save(saveState) as ActionMeta<any, any>
+        const saveAction = save(saveState) as PayloadMetaAction<any, any, any>
 
         if (process.env.NODE_ENV !== 'production') {
           if (!saveAction.meta) {

@@ -1,17 +1,17 @@
-import { BaseAction } from 'redux-actions'
+import { Action } from 'typesafe-actions'
 
 export type StorageEngine = {
   load(): PromiseLike<any>
   save(state: any): PromiseLike<any>
 }
 
-export type MiddlewareWhitelist = string[] | ((action: BaseAction) => boolean)
+export type MiddlewareWhitelist = string[] | ((action: Action) => boolean)
 
 export type MiddlewareOptions<T> = {
   /**
    * Return `true` for any action that should be accepted by the middleware.
    */
-  filterAction?: (action: BaseAction) => boolean
+  filterAction?: (action: Action) => boolean
 
   /**
    * Transform and return a new state before saving to the psrovided storage engine.
@@ -30,7 +30,7 @@ export type MiddlewareOptions<T> = {
 }
 
 export type ReduxStore<T> = {
-  dispatch: (action: BaseAction) => void
+  dispatch: (action: Action) => void
   getState: () => T
 }
 

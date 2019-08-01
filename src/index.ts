@@ -1,6 +1,4 @@
-import { createLoader } from './loader'
-import { createMiddleware } from './middleware'
-import { LOAD, SAVE } from './actions'
-import reducer from './reducer'
-
-export { createLoader, createMiddleware, reducer, SAVE, LOAD }
+export * from './actions'
+export { createLoader } from './loader'
+export { createMiddleware } from './middleware'
+export { default as reducer } from './reducer'
