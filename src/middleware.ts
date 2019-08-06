@@ -31,7 +31,7 @@ function isValidAction(action) {
   return false
 }
 
-export function createMiddleware<T extends any>(engine: StorageEngine, options: MiddlewareOptions<T> = {}) {
+export function createMiddleware<T extends any>(engine: StorageEngine<T>, options: MiddlewareOptions<T> = {}) {
   const opts = Object.assign({ disableDispatchSaveAction: false }, options)
 
   return ({ dispatch, getState }: ReduxStore<T>) => {

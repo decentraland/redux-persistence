@@ -1,4 +1,5 @@
 export * from './actions'
+export { StorageEngine } from './types'
 export { createLoader } from './loader'
 export { createMiddleware } from './middleware'
 export { default as reducer } from './reducer'

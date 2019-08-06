@@ -1,8 +1,8 @@
 import { Action } from 'typesafe-actions'
 
-export type StorageEngine = {
-  load(): PromiseLike<any>
-  save(state: any): PromiseLike<any>
+export type StorageEngine<T> = {
+  load(): PromiseLike<T>
+  save(state: T): PromiseLike<void>
 }
 
 export type MiddlewareWhitelist = string[] | ((action: Action) => boolean)
