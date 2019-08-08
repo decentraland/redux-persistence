@@ -228,6 +228,32 @@ test('middleware - should allow setting custom onError handler', async t => {
   t.is(err.message, 'Beep boop, out of space')
 })
 
+test('middleware - should pass redux store to custom error handler', async t => {
+  const store = { getState: sinon.spy(), dispatch: sinon.stub() }
+  const handledStore = future<typeof store>()
+  const next = sinon.stub()
+  const action = { type: 'dummy' }
+  const engine = {
+    save: () => {
+      return Promise.reject(new Error('Beep boop, out of space'))
+    },
+    load: sinon.stub()
+  }
+
+  const errorHandler = (_: Error, reduxStore: typeof store) => {
+    handledStore.resolve(reduxStore)
+  }
+
+  createMiddleware(engine, {
+    onError: errorHandler
+  })(store)(next)(action)
+
+  const reduxStore = await handledStore
+
+  t.is(store.dispatch.firstCall, null)
+  t.is(reduxStore, store)
+})
+
 test('middleware - should allow setting custom transformer', async t => {
   const ready = future<boolean>()
   const store = { getState: () => ({}), dispatch: sinon.spy() }

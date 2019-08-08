@@ -25,8 +25,12 @@ export type MiddlewareOptions<T> = {
 
   /**
    * Handle any errors thrown while trying to save to the provided storage engine.
+   *
+   * Receives the redux store as a second argument, useful for dispatching actions
+   * when reacting to errors (middlewares are declared before the store is constructed
+   * and available).
    */
-  onError?: (err: Error) => void
+  onError?: (err: Error, store: ReduxStore<T>) => void
 }
 
 export type ReduxStore<T> = {
